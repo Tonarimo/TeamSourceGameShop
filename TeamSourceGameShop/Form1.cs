@@ -16,5 +16,16 @@ namespace TeamSourceGameShop
         {
             InitializeComponent();
         }
+
+        private void btnAddGame_Click(object sender, EventArgs e)
+        {
+            frmAddOrUpdateGames addGameForm = new frmAddOrUpdateGames();
+            addGameForm.ShowDialog();
+        }
+
+        private void frmGameShop_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

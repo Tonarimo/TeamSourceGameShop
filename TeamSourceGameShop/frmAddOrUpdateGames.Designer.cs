@@ -110,6 +110,7 @@
             this.btnAddOrUpdateGame.Size = new System.Drawing.Size(121, 48);
             this.btnAddOrUpdateGame.TabIndex = 8;
             this.btnAddOrUpdateGame.UseVisualStyleBackColor = true;
+            this.btnAddOrUpdateGame.Click += new System.EventHandler(this.btnAddOrUpdateGame_Click);
             // 
             // frmAddOrUpdateGames
             // 
@@ -126,6 +127,7 @@
             this.Controls.Add(this.txtNameOfGame);
             this.Controls.Add(this.lblNameOfGame);
             this.Name = "frmAddOrUpdateGames";
+            this.Load += new System.EventHandler(this.frmAddOrUpdateGames_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
