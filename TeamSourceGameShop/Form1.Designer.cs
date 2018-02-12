@@ -108,6 +108,7 @@
             this.btnAddGame.TabIndex = 7;
             this.btnAddGame.Text = "Add Game";
             this.btnAddGame.UseVisualStyleBackColor = true;
+            this.btnAddGame.Click += new System.EventHandler(this.btnAddGame_Click);
             // 
             // btnUpdateGame
             // 
@@ -144,6 +145,7 @@
             this.Controls.Add(this.lblSearchGames);
             this.Name = "frmGameShop";
             this.Text = "Game Shop";
+            this.Load += new System.EventHandler(this.frmGameShop_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
