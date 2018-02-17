@@ -35,7 +35,7 @@
             this.lblNumOfCopies = new System.Windows.Forms.Label();
             this.txtNumberOfCopies = new System.Windows.Forms.TextBox();
             this.lblAvailabilityOfGame = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtAvailability = new System.Windows.Forms.TextBox();
             this.btnAddOrUpdateGame = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -96,12 +96,12 @@
             this.lblAvailabilityOfGame.TabIndex = 6;
             this.lblAvailabilityOfGame.Text = "Availability:";
             // 
-            // textBox1
+            // txtAvailability
             // 
-            this.textBox1.Location = new System.Drawing.Point(120, 146);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(137, 20);
-            this.textBox1.TabIndex = 7;
+            this.txtAvailability.Location = new System.Drawing.Point(120, 146);
+            this.txtAvailability.Name = "txtAvailability";
+            this.txtAvailability.Size = new System.Drawing.Size(137, 20);
+            this.txtAvailability.TabIndex = 7;
             // 
             // btnAddOrUpdateGame
             // 
@@ -119,7 +119,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.btnAddOrUpdateGame);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtAvailability);
             this.Controls.Add(this.lblAvailabilityOfGame);
             this.Controls.Add(this.txtNumberOfCopies);
             this.Controls.Add(this.lblNumOfCopies);
@@ -143,7 +143,7 @@
         private System.Windows.Forms.Label lblNumOfCopies;
         private System.Windows.Forms.TextBox txtNumberOfCopies;
         private System.Windows.Forms.Label lblAvailabilityOfGame;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtAvailability;
         private System.Windows.Forms.Button btnAddOrUpdateGame;
     }
 }

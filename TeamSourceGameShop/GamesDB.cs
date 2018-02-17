@@ -11,15 +11,15 @@ namespace TeamSourceGameShop
     {
         public static bool AddGame(Game game)
         {
-            SqlConnection connection = new SqlConnection();
+            SqlConnection connection = DBHelper.GetConnection();
             SqlCommand addGameCommand = new SqlCommand();
             addGameCommand.Connection = connection;
-            addGameCommand.CommandText = @"INSERT INTO Games(GameName, Price, NumberOfCopies, Availability)
-                                           VALUES(@GameName, @Price, @NumberOfCopies, @Availability)";
+            addGameCommand.CommandText = @"INSERT INTO Games(GameName, Price, NumberOfCopies, AvailabilityOfGame)
+                                           VALUES(@GameName, @Price, @NumberOfCopies, @AvailabilityOfGame)";
             addGameCommand.Parameters.AddWithValue("@GameName", game.GameName);
             addGameCommand.Parameters.AddWithValue("@Price", game.Price);
             addGameCommand.Parameters.AddWithValue("@NumberOfCopies", game.NumberOfCopies);
-            addGameCommand.Parameters.AddWithValue("@Availability", game.Availability);
+            addGameCommand.Parameters.AddWithValue("@AvailabilityOfGame", game.Availability);
 
             try
             {
@@ -77,7 +77,7 @@ namespace TeamSourceGameShop
         }
         public static List<Game> getAllGamesByPrice()
         {
-            // get's all games by name from DB.
+            // get's all games by price from DB.
             SqlConnection con = DBHelper.GetConnection();
 
             SqlCommand retrieve = new SqlCommand();
@@ -96,7 +96,44 @@ namespace TeamSourceGameShop
                 while (reader.Read())
                 {
                     Game game = new Game();
-                    game.GameName = reader["Price"] as string;
+                    game.Price = reader.GetDouble(reader.GetOrdinal("Price"));
+
+                    gameList.Add(game);
+                }
+                return gameList;
+            }
+            finally
+            {
+                con.Dispose();
+            }
+        }
+
+        public static List<Game> getAllGames()
+        {
+            // get's all games by name from DB.
+            SqlConnection con = DBHelper.GetConnection();
+
+            SqlCommand retrieve = new SqlCommand();
+            retrieve.Connection = con;
+            retrieve.CommandText = @"SELECT GameName, Price, NumberOfCopies, AvailabilityOfGame
+                                      FROM Games";
+
+            try
+            {
+                con.Open();
+
+                SqlDataReader reader = retrieve.ExecuteReader();
+
+                List<Game> gameList = new List<Game>();
+
+                while (reader.Read())
+                {
+                    Game game = new Game();
+                    game.GameName = reader["GameName"] as string;
+                    game.Price = reader.GetDouble(reader.GetOrdinal("Price"));
+                    game.NumberOfCopies = reader.GetInt32(reader.GetOrdinal("NumberOfCopies"));
+                    game.Availability = reader["AvailabilityOfGame"] as string;
+
 
                     gameList.Add(game);
                 }

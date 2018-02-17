@@ -30,7 +30,7 @@
         {
             this.lblSearchGames = new System.Windows.Forms.Label();
             this.txtSearchGames = new System.Windows.Forms.TextBox();
-            this.txtGamesList = new System.Windows.Forms.ListBox();
+            this.lstGamesList = new System.Windows.Forms.ListBox();
             this.lblGameName = new System.Windows.Forms.Label();
             this.lblPrice = new System.Windows.Forms.Label();
             this.lblNumberOfGames = new System.Windows.Forms.Label();
@@ -56,13 +56,13 @@
             this.txtSearchGames.Size = new System.Drawing.Size(196, 20);
             this.txtSearchGames.TabIndex = 1;
             // 
-            // txtGamesList
+            // lstGamesList
             // 
-            this.txtGamesList.FormattingEnabled = true;
-            this.txtGamesList.Location = new System.Drawing.Point(28, 91);
-            this.txtGamesList.Name = "txtGamesList";
-            this.txtGamesList.Size = new System.Drawing.Size(289, 173);
-            this.txtGamesList.TabIndex = 2;
+            this.lstGamesList.FormattingEnabled = true;
+            this.lstGamesList.Location = new System.Drawing.Point(28, 91);
+            this.lstGamesList.Name = "lstGamesList";
+            this.lstGamesList.Size = new System.Drawing.Size(289, 173);
+            this.lstGamesList.TabIndex = 2;
             // 
             // lblGameName
             // 
@@ -118,6 +118,7 @@
             this.btnUpdateGame.TabIndex = 8;
             this.btnUpdateGame.Text = "Update Game";
             this.btnUpdateGame.UseVisualStyleBackColor = true;
+            this.btnUpdateGame.Click += new System.EventHandler(this.btnUpdateGame_Click);
             // 
             // btnDeleteGame
             // 
@@ -140,7 +141,7 @@
             this.Controls.Add(this.lblNumberOfGames);
             this.Controls.Add(this.lblPrice);
             this.Controls.Add(this.lblGameName);
-            this.Controls.Add(this.txtGamesList);
+            this.Controls.Add(this.lstGamesList);
             this.Controls.Add(this.txtSearchGames);
             this.Controls.Add(this.lblSearchGames);
             this.Name = "frmGameShop";
@@ -155,7 +156,7 @@
 
         private System.Windows.Forms.Label lblSearchGames;
         private System.Windows.Forms.TextBox txtSearchGames;
-        private System.Windows.Forms.ListBox txtGamesList;
+        private System.Windows.Forms.ListBox lstGamesList;
         private System.Windows.Forms.Label lblGameName;
         private System.Windows.Forms.Label lblPrice;
         private System.Windows.Forms.Label lblNumberOfGames;

@@ -19,27 +19,28 @@ namespace TeamSourceGameShop
 
         private void btnAddGame_Click(object sender, EventArgs e)
         {
-            frmAddOrUpdateGames addGameForm = new frmAddOrUpdateGames();
+            frmAddOrUpdateGames addGameForm = new frmAddOrUpdateGames(null);
             addGameForm.ShowDialog();
+            PopulateGameList();
         }
 
         private void frmGameShop_Load(object sender, EventArgs e)
         {
-            //PopulateGameList();
+            PopulateGameList();
             // goes to catch on load, need to figure out why
         }
 
         private void PopulateGameList()
         {
-            txtGamesList.Items.Clear();
+            lstGamesList.Items.Clear();
 
             try
             {
-                List<Game> games = GamesDB.getAllGamesByName();
+                List<Game> games = GamesDB.getAllGames();
 
                 foreach (Game game in games)
                 {
-                    txtGamesList.Items.Add(game);
+                    lstGamesList.Items.Add(game);
                 }
             }
             catch
@@ -47,6 +48,15 @@ namespace TeamSourceGameShop
                 MessageBox.Show("Error, please try again later");
                 Application.Exit();
             }
+        }
+
+        private void btnUpdateGame_Click(object sender, EventArgs e)
+        {
+            // this does not properly work yet, it just adds another game
+            // will be working on this later
+            Game game = (Game)lstGamesList.SelectedItem;
+            var updateGameForm = new frmAddOrUpdateGames(game);
+            updateGameForm.ShowDialog();
         }
     }
 }
