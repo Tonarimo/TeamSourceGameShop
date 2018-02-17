@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TeamSourceGameShop
 {
-    class Game
+    public class Game
     {
         private int _GameID { get; set; }
         
@@ -39,7 +39,7 @@ namespace TeamSourceGameShop
             }
             set
             {
-                GameID = value;
+                _GameID = value;
             }
         }
 
@@ -51,7 +51,7 @@ namespace TeamSourceGameShop
             }
             set
             {
-                GameName = value;
+                _GameName = value;
             }
         }
 
@@ -63,7 +63,7 @@ namespace TeamSourceGameShop
             }
             set
             {
-                Price = value;
+                _Price = value;
             }
         }
 
@@ -75,7 +75,7 @@ namespace TeamSourceGameShop
             }
             set
             {
-                NumberOfCopies = value;
+                _NumberOfCopies = value;
             }
         }
 
@@ -87,7 +87,7 @@ namespace TeamSourceGameShop
             }
             set
             {
-                Availability = value;
+                _Availability = value;
             }
         }
 
