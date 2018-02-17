@@ -109,6 +109,7 @@
             this.btnAddOrUpdateGame.Name = "btnAddOrUpdateGame";
             this.btnAddOrUpdateGame.Size = new System.Drawing.Size(121, 48);
             this.btnAddOrUpdateGame.TabIndex = 8;
+            this.btnAddOrUpdateGame.Text = "Add or Update Game";
             this.btnAddOrUpdateGame.UseVisualStyleBackColor = true;
             this.btnAddOrUpdateGame.Click += new System.EventHandler(this.btnAddOrUpdateGame_Click);
             // 
