@@ -57,6 +57,7 @@ namespace TeamSourceGameShop
             Game game = (Game)lstGamesList.SelectedItem;
             var updateGameForm = new frmAddOrUpdateGames(game);
             updateGameForm.ShowDialog();
+            PopulateGameList();
         }
     }
 }

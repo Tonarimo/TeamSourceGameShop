@@ -4,44 +4,63 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace TeamSourceGameShop
 {
     static class GamesDB
     {
-        public static bool AddGame(Game game)
+        public static void AddOrUpdateGame(Game game)
         {
-            SqlConnection connection = DBHelper.GetConnection();
-            SqlCommand addGameCommand = new SqlCommand();
-            addGameCommand.Connection = connection;
-            addGameCommand.CommandText = @"INSERT INTO Games(GameName, Price, NumberOfCopies, AvailabilityOfGame)
-                                           VALUES(@GameName, @Price, @NumberOfCopies, @AvailabilityOfGame)";
-            addGameCommand.Parameters.AddWithValue("@GameName", game.GameName);
-            addGameCommand.Parameters.AddWithValue("@Price", game.Price);
-            addGameCommand.Parameters.AddWithValue("@NumberOfCopies", game.NumberOfCopies);
-            addGameCommand.Parameters.AddWithValue("@AvailabilityOfGame", game.Availability);
+            GameStoreDB db = new GameStoreDB();
+            Game g = db.Games.Find(game.GameID);
 
-            try
+            if (g == null)
             {
-                connection.Open();
-                int rowsAffected = addGameCommand.ExecuteNonQuery();
-                if(rowsAffected > 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                db.Games.Add(game);
+                MessageBox.Show("Game Added");
             }
-            catch(SqlException ex)
+            else
             {
-                throw ex;
+                g.GameName = game.GameName;
+                g.NumberOfCopies = game.NumberOfCopies;
+                g.Price = game.Price;
+                g.Availability = game.Availability;
+                MessageBox.Show("Game Updated");
             }
-            finally
-            {
-                connection.Close();
-            }
+
+            db.SaveChanges();
+            //SqlConnection connection = DBHelper.GetConnection();
+            //SqlCommand addGameCommand = new SqlCommand();
+            //addGameCommand.Connection = connection;
+            //addGameCommand.CommandText = @"INSERT INTO Games(GameName, Price, NumberOfCopies, AvailabilityOfGame)
+            //                               VALUES(@GameName, @Price, @NumberOfCopies, @AvailabilityOfGame)";
+            //addGameCommand.Parameters.AddWithValue("@GameName", game.GameName);
+            //addGameCommand.Parameters.AddWithValue("@Price", game.Price);
+            //addGameCommand.Parameters.AddWithValue("@NumberOfCopies", game.NumberOfCopies);
+            //addGameCommand.Parameters.AddWithValue("@AvailabilityOfGame", game.Availability);
+
+            //try
+            //{
+            //    connection.Open();
+            //    int rowsAffected = addGameCommand.ExecuteNonQuery();
+            //    if(rowsAffected > 0)
+            //    {
+            //        return true;
+            //    }
+            //    else
+            //    {
+            //        return false;
+            //    }
+            //}
+            //catch(SqlException ex)
+            //{
+            //    throw ex;
+            //}
+            //finally
+            //{
+            //    connection.Close();
+            //}
         }
         public static List<Game> getAllGamesByName()
         {
@@ -111,38 +130,41 @@ namespace TeamSourceGameShop
         public static List<Game> getAllGames()
         {
             // get's all games by name from DB.
-            SqlConnection con = DBHelper.GetConnection();
+            GameStoreDB db = new GameStoreDB();
 
-            SqlCommand retrieve = new SqlCommand();
-            retrieve.Connection = con;
-            retrieve.CommandText = @"SELECT GameName, Price, NumberOfCopies, AvailabilityOfGame
-                                      FROM Games";
+            return db.Games.OrderBy(g => g.GameName).ToList();
+            //SqlConnection con = DBHelper.GetConnection();
 
-            try
-            {
-                con.Open();
+            //SqlCommand retrieve = new SqlCommand();
+            //retrieve.Connection = con;
+            //retrieve.CommandText = @"SELECT GameName, Price, NumberOfCopies, AvailabilityOfGame
+            //                          FROM Games";
 
-                SqlDataReader reader = retrieve.ExecuteReader();
+            //try
+            //{
+            //    con.Open();
 
-                List<Game> gameList = new List<Game>();
+            //    SqlDataReader reader = retrieve.ExecuteReader();
 
-                while (reader.Read())
-                {
-                    Game game = new Game();
-                    game.GameName = reader["GameName"] as string;
-                    game.Price = reader.GetDouble(reader.GetOrdinal("Price"));
-                    game.NumberOfCopies = reader.GetInt32(reader.GetOrdinal("NumberOfCopies"));
-                    game.Availability = reader["AvailabilityOfGame"] as string;
+            //    List<Game> gameList = new List<Game>();
+
+            //    while (reader.Read())
+            //    {
+            //        Game game = new Game();
+            //        game.GameName = reader["GameName"] as string;
+            //        game.Price = reader.GetDouble(reader.GetOrdinal("Price"));
+            //        game.NumberOfCopies = reader.GetInt32(reader.GetOrdinal("NumberOfCopies"));
+            //        game.Availability = reader["AvailabilityOfGame"] as string;
 
 
-                    gameList.Add(game);
-                }
-                return gameList;
-            }
-            finally
-            {
-                con.Dispose();
-            }
+            //        gameList.Add(game);
+            //    }
+            //    return gameList;
+            //}
+            //finally
+            //{
+            //    con.Dispose();
+            //}
         }
     }
 }
