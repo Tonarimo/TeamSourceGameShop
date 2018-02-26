@@ -35,8 +35,7 @@ namespace TeamSourceGameShop
             game.Price = Convert.ToDouble(txtPrice.Text);
             game.Availability = txtAvailability.Text;
 
-            GamesDB.AddGame(game);
-
+            GamesDB.AddOrUpdateGame(game);
         }
 
         private void frmAddOrUpdateGames_Load(object sender, EventArgs e)
