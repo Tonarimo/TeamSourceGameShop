@@ -70,6 +70,7 @@
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(137, 20);
             this.txtPrice.TabIndex = 3;
+            this.txtPrice.Leave += new System.EventHandler(this.txtPrice_Leave);
             // 
             // lblNumOfCopies
             // 
