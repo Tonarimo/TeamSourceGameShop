@@ -59,5 +59,29 @@ namespace TeamSourceGameShop
             updateGameForm.ShowDialog();
             PopulateGameList();
         }
+
+        private void txtSearchGames_TextChanged(object sender, EventArgs e)
+        {
+            if (txtSearchGames.Text.Length > 0)
+            {
+                lstGamesList.Items.Clear();
+                string search = txtSearchGames.Text;
+
+                List<Game> games = GamesDB.getAllGames();
+
+                List<Game> matches = new List<Game>();
+
+                matches = games.Where(g => g.GameName.Contains(search)).ToList();
+
+                foreach (var match in matches)
+                {
+                    lstGamesList.Items.Add(match);
+                }
+            }
+            else
+            {
+                PopulateGameList();
+            }
+        }
     }
 }
