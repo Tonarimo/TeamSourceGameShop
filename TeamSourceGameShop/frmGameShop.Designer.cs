@@ -55,6 +55,7 @@
             this.txtSearchGames.Name = "txtSearchGames";
             this.txtSearchGames.Size = new System.Drawing.Size(196, 20);
             this.txtSearchGames.TabIndex = 1;
+            this.txtSearchGames.TextChanged += new System.EventHandler(this.txtSearchGames_TextChanged);
             // 
             // lstGamesList
             // 
