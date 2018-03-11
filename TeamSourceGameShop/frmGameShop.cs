@@ -27,16 +27,19 @@ namespace TeamSourceGameShop
         private void frmGameShop_Load(object sender, EventArgs e)
         {
             PopulateGameList();
-            // goes to catch on load, need to figure out why
         }
 
+        /// <summary>
+        /// Populates the gamesListBox with all the 
+        /// games that have been added into the database.
+        /// </summary>
         private void PopulateGameList()
         {
             lstGamesList.Items.Clear();
 
             try
             {
-                List<Game> games = GamesDB.getAllGames();
+                List<Game> games = GamesDB.getAllGamesByName();
 
                 foreach (Game game in games)
                 {
@@ -52,8 +55,6 @@ namespace TeamSourceGameShop
 
         private void btnUpdateGame_Click(object sender, EventArgs e)
         {
-            // this does not properly work yet, it just adds another game
-            // will be working on this later
             Game game = (Game)lstGamesList.SelectedItem;
             var updateGameForm = new frmAddOrUpdateGames(game);
             updateGameForm.ShowDialog();
@@ -64,42 +65,56 @@ namespace TeamSourceGameShop
         {
             if (txtSearchGames.Text.Length > 0)
             {
+                // clear the list
                 lstGamesList.Items.Clear();
+
+                // get the text from the search box
                 string search = txtSearchGames.Text;
 
-                List<Game> games = GamesDB.getAllGames();
+                // get a list of all games by name
+                List<Game> games = GamesDB.getAllGamesByName();
 
+                // get a second list of games to compare to
                 List<Game> matches = new List<Game>();
 
+                // get all games by name that contain the search name
                 matches = games.Where(g => g.GameName.Contains(search)).ToList();
 
+                // add them to the listbox when you find a game name that 
+                // contains the search word
                 foreach (var match in matches)
                 {
                     lstGamesList.Items.Add(match);
                 }
-            }
-            else if(txtSearchGames.Text.Length > 0)
-            {
-                lstGamesList.Items.Clear();
 
-                double search = Convert.ToDouble(txtSearchGames.Text);
+                // get the text from the search box
+                string search2 = txtSearchGames.Text;
 
+                // get a list of all games by price
                 List<Game> gamesByPrice = GamesDB.getAllGamesByPrice();
 
-                List<Game> match = new List<Game>();
+                // get a second list to compare to
+                List<Game> match2 = new List<Game>();
 
-                match = gamesByPrice.Where(g => g.Price.Equals(search)).ToList(); // this isn't working for some reason
+                // get all games whose price starts with the price in the text box
+                match2 = gamesByPrice.Where(g => g.Price.ToString().StartsWith(search)).ToList();
 
-                foreach(var i in match)
+                // display all games whose price matches what is typed in the 
+                // search box
+                foreach (var i in match2)
                 {
                     lstGamesList.Items.Add(i);
                 }
             }
             else
             {
+                // populate the list with all the games
                 PopulateGameList();
             }
-            
+        }
+
+        private void btnDeleteGame_Click(object sender, EventArgs e)
+        {
         }
     }
 }
