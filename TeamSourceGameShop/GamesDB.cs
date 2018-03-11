@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace TeamSourceGameShop
 {
-    static class GamesDB
+    static class GamesDB 
     {
         public static void AddOrUpdateGame(Game game)
         {
@@ -38,9 +38,10 @@ namespace TeamSourceGameShop
         }
         public static List<Game> getAllGamesByPrice()
         {
+            // gets games by price from DB
             GameStoreDB db = new GameStoreDB();
             return db.Games.OrderBy(g => g.Price).ToList();
-            //// get's all games by price from DB.
+            // get's all games by price from DB.
             //SqlConnection con = DBHelper.GetConnection();
 
             //SqlCommand retrieve = new SqlCommand();
@@ -77,6 +78,21 @@ namespace TeamSourceGameShop
             GameStoreDB db = new GameStoreDB();
 
             return db.Games.OrderBy(g => g.GameName).ToList();
+        }
+
+        public static Game deleteGame(Game games)
+        {
+            GameStoreDB db = new GameStoreDB();
+
+            var game = db.Games.Find(games.GameID);
+
+            if(game != null)
+            {
+                db.Games.Remove(game);
+                db.SaveChanges();
+                return game;
+            }
+            return null;
         }
     }
 }

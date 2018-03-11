@@ -78,21 +78,21 @@ namespace TeamSourceGameShop
                     lstGamesList.Items.Add(match);
                 }
             }
-            else if(txtSearchGames.Text.Length > 0)
+            else if (txtSearchGames.Text.Length > 0)
             {
                 lstGamesList.Items.Clear();
 
-                double search = Convert.ToDouble(txtSearchGames.Text);
+                string search = txtSearchGames.Text;
 
                 List<Game> gamesByPrice = GamesDB.getAllGamesByPrice();
 
-                List<Game> match = new List<Game>();
+                List<Game> matches = new List<Game>();
 
-                match = gamesByPrice.Where(g => g.Price.Equals(search)).ToList(); // this isn't working for some reason
+                matches = gamesByPrice.Where(g => g.Price.Equals(search)).ToList(); // this isn't working for some reason
 
-                foreach(var i in match)
+                foreach(var match in matches)
                 {
-                    lstGamesList.Items.Add(i);
+                    lstGamesList.Items.Add(match);
                 }
             }
             else
@@ -100,6 +100,13 @@ namespace TeamSourceGameShop
                 PopulateGameList();
             }
             
+        }
+        private void btnDeleteGame_Click(object sender, EventArgs e)
+        {
+            Game games = (Game)lstGamesList.SelectedItem;
+            
+            GamesDB.deleteGame(games);
+            PopulateGameList();
         }
     }
 }
