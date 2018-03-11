@@ -158,7 +158,6 @@
 
         private System.Windows.Forms.Label lblSearchGames;
         private System.Windows.Forms.TextBox txtSearchGames;
-        private System.Windows.Forms.ListBox lstGamesList;
         private System.Windows.Forms.Label lblGameName;
         private System.Windows.Forms.Label lblPrice;
         private System.Windows.Forms.Label lblNumberOfGames;
@@ -166,6 +165,7 @@
         private System.Windows.Forms.Button btnAddGame;
         private System.Windows.Forms.Button btnUpdateGame;
         private System.Windows.Forms.Button btnDeleteGame;
+        public System.Windows.Forms.ListBox lstGamesList;
     }
 }
 

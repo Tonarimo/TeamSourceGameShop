@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace TeamSourceGameShop
 {
-    static class GamesDB
+    static class GamesDB 
     {
         /// <summary>
         /// Adds or updates a game depending on whether
@@ -46,6 +46,7 @@ namespace TeamSourceGameShop
         /// <returns>Retuns a list of games by their price.</returns>
         public static List<Game> getAllGamesByPrice()
         {
+            // gets games by price from DB
             GameStoreDB db = new GameStoreDB();
             return db.Games.OrderBy(g => g.Price).ToList();
         }
@@ -61,6 +62,21 @@ namespace TeamSourceGameShop
             GameStoreDB db = new GameStoreDB();
 
             return db.Games.OrderBy(g => g.GameName).ToList();
+        }
+
+        public static Game deleteGame(Game games)
+        {
+            GameStoreDB db = new GameStoreDB();
+
+            var game = db.Games.Find(games.GameID);
+
+            if(game != null)
+            {
+                db.Games.Remove(game);
+                db.SaveChanges();
+                return game;
+            }
+            return null;
         }
     }
 }

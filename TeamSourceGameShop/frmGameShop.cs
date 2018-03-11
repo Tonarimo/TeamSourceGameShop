@@ -86,7 +86,7 @@ namespace TeamSourceGameShop
                 {
                     lstGamesList.Items.Add(match);
                 }
-
+                
                 // get the text from the search box
                 string search2 = txtSearchGames.Text;
 
@@ -103,7 +103,7 @@ namespace TeamSourceGameShop
                 // search box
                 foreach (var i in match2)
                 {
-                    lstGamesList.Items.Add(i);
+                    lstGamesList.Items.Add(match);
                 }
             }
             else
@@ -115,6 +115,9 @@ namespace TeamSourceGameShop
 
         private void btnDeleteGame_Click(object sender, EventArgs e)
         {
+            Game games = (Game)lstGamesList.SelectedItem;
+            GamesDB.deleteGame(games);
+            PopulateGameList();
         }
     }
 }
