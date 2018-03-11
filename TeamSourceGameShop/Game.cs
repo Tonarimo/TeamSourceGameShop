@@ -93,7 +93,7 @@ namespace TeamSourceGameShop
 
         public override string ToString()
         {
-            return _GameName + "     $" + _Price + "     " + _NumberOfCopies + "     " + _Availability;
+            return String.Format("{0, -35} {1, -30} {2, -15} {3, 5}", _GameName,  $"{_Price:c}", _NumberOfCopies, _Availability);
         }
     }
 }

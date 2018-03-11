@@ -51,6 +51,12 @@ namespace TeamSourceGameShop
             }
         }
 
+        /// <summary>
+        /// Checks to make sure that the data being passed is an
+        /// integer number.
+        /// </summary>
+        /// <param name="data">The data being passed to check to see if it is an int.</param>
+        /// <returns></returns>
         private bool IsAnInt(string data)
         {
             int value;
@@ -66,6 +72,12 @@ namespace TeamSourceGameShop
             }
         }
 
+        /// <summary>
+        /// Checks to make sure that the data being passed to it
+        /// is a decimal number.
+        /// </summary>
+        /// <param name="data">The data that was passed to the method to check to see if it is a double.</param>
+        /// <returns></returns>
         private bool IsADecimal(string data)
         {
             decimal value;
@@ -94,6 +106,11 @@ namespace TeamSourceGameShop
             }
         }
 
+        /// <summary>
+        /// Makes sure that if you are updating a game, the
+        /// text in each of the fields remains there from before
+        /// so you can just change the current data.
+        /// </summary>
         private void LoadUpdateGameData()
         {
             txtNameOfGame.Text = gameToBeUpdated.GameName;
@@ -102,6 +119,13 @@ namespace TeamSourceGameShop
             txtAvailability.Text = gameToBeUpdated.Availability.ToString();
         }
 
+        /// <summary>
+        /// Makes sure that the price is formatted as 
+        /// a double even if you just enter for example: 10
+        /// as the price for a game.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtPrice_Leave(object sender, EventArgs e)
         {
             double amount = 0.00d;
