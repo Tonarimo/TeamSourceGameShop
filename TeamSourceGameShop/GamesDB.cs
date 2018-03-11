@@ -64,19 +64,21 @@ namespace TeamSourceGameShop
             return db.Games.OrderBy(g => g.GameName).ToList();
         }
 
-        public static Game deleteGame(Game games)
+        public static void deleteGame(Game games)
         {
             GameStoreDB db = new GameStoreDB();
 
-            var game = db.Games.Find(games.GameID);
-
-            if(game != null)
+            if(games != null)
             {
+                var game = db.Games.Find(games.GameID);
                 db.Games.Remove(game);
                 db.SaveChanges();
-                return game;
+                MessageBox.Show("Game Deleted!");
+            } 
+            else
+            {
+                MessageBox.Show("You did not select a game to delete!");
             }
-            return null;
         }
     }
 }

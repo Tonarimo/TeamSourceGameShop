@@ -103,7 +103,7 @@ namespace TeamSourceGameShop
                 // search box
                 foreach (var i in match2)
                 {
-                    lstGamesList.Items.Add(match);
+                    lstGamesList.Items.Add(match2);
                 }
             }
             else
