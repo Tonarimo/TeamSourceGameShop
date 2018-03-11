@@ -77,20 +77,17 @@ namespace TeamSourceGameShop
                 {
                     lstGamesList.Items.Add(match);
                 }
-            }
-            else if (txtSearchGames.Text.Length > 0)
-            {
-                lstGamesList.Items.Clear();
 
-                string search = txtSearchGames.Text;
+                string search2 = txtSearchGames.Text;
+
 
                 List<Game> gamesByPrice = GamesDB.getAllGamesByPrice();
 
-                List<Game> matches = new List<Game>();
+                List<Game> match2 = new List<Game>();
 
-                matches = gamesByPrice.Where(g => g.Price.Equals(search)).ToList(); // this isn't working for some reason
+                match2 = gamesByPrice.Where(g => g.Price.ToString().StartsWith(search)).ToList();
 
-                foreach(var match in matches)
+                foreach (var match in match2)
                 {
                     lstGamesList.Items.Add(match);
                 }
