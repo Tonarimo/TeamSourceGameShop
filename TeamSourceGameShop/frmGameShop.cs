@@ -78,10 +78,28 @@ namespace TeamSourceGameShop
                     lstGamesList.Items.Add(match);
                 }
             }
+            else if(txtSearchGames.Text.Length > 0)
+            {
+                lstGamesList.Items.Clear();
+
+                double search = Convert.ToDouble(txtSearchGames.Text);
+
+                List<Game> gamesByPrice = GamesDB.getAllGamesByPrice();
+
+                List<Game> match = new List<Game>();
+
+                match = gamesByPrice.Where(g => g.Price.Equals(search)).ToList(); // this isn't working for some reason
+
+                foreach(var i in match)
+                {
+                    lstGamesList.Items.Add(i);
+                }
+            }
             else
             {
                 PopulateGameList();
             }
+            
         }
     }
 }

@@ -33,67 +33,42 @@ namespace TeamSourceGameShop
         }
         public static List<Game> getAllGamesByName()
         {
-            // get's all games by name from DB.
-            SqlConnection con = DBHelper.GetConnection();
-
-            SqlCommand retrieve = new SqlCommand();
-            retrieve.Connection = con;
-            retrieve.CommandText = @"SELECT GameName
-                                      FROM Games";
-
-            try
-            {
-                con.Open();
-
-                SqlDataReader reader = retrieve.ExecuteReader();
-
-                List<Game> gameList = new List<Game>();
-
-                while(reader.Read())
-                {
-                    Game game = new Game();
-                    game.GameName = reader["GameName"] as string;
-
-                    gameList.Add(game);
-                }
-                return gameList;
-            }
-            finally
-            {
-                con.Dispose();
-            }
+            return getAllGames(); 
+            // calls getAllGames to get around having to rename every instance ofr getAllGamesByName
         }
         public static List<Game> getAllGamesByPrice()
         {
-            // get's all games by price from DB.
-            SqlConnection con = DBHelper.GetConnection();
+            GameStoreDB db = new GameStoreDB();
+            return db.Games.OrderBy(g => g.Price).ToList();
+            //// get's all games by price from DB.
+            //SqlConnection con = DBHelper.GetConnection();
 
-            SqlCommand retrieve = new SqlCommand();
-            retrieve.Connection = con;
-            retrieve.CommandText = @"SELECT Price
-                                      FROM Games";
+            //SqlCommand retrieve = new SqlCommand();
+            //retrieve.Connection = con;
+            //retrieve.CommandText = @"SELECT Price
+            //                          FROM Games";
 
-            try
-            {
-                con.Open();
+            //try
+            //{
+            //    con.Open();
 
-                SqlDataReader reader = retrieve.ExecuteReader();
+            //    SqlDataReader reader = retrieve.ExecuteReader();
 
-                List<Game> gameList = new List<Game>();
+            //    List<Game> gameList = new List<Game>();
 
-                while (reader.Read())
-                {
-                    Game game = new Game();
-                    game.Price = reader.GetDouble(reader.GetOrdinal("Price"));
+            //    while (reader.Read())
+            //    {
+            //        Game game = new Game();
+            //        game.Price = reader.GetDouble(reader.GetOrdinal("Price"));
 
-                    gameList.Add(game);
-                }
-                return gameList;
-            }
-            finally
-            {
-                con.Dispose();
-            }
+            //        gameList.Add(game);
+            //    }
+            //    return gameList;
+            //}
+            //finally
+            //{
+            //    con.Dispose();
+            //}
         }
 
         public static List<Game> getAllGames()
