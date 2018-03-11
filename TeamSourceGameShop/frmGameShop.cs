@@ -88,7 +88,7 @@ namespace TeamSourceGameShop
 
                 List<Game> match = new List<Game>();
 
-                match = gamesByPrice.Where(g => g.Price.Equals(search)).ToList(); 
+                match = gamesByPrice.Where(g => g.Price.Equals(search)).ToList(); // this isn't working for some reason
 
                 foreach(var i in match)
                 {
