@@ -65,6 +65,7 @@ namespace TeamSourceGameShop
         {
             if (txtSearchGames.Text.Length > 0)
             {
+                /**************START GET GAME BY NAME************/
                 // clear the list
                 lstGamesList.Items.Clear();
 
@@ -86,7 +87,9 @@ namespace TeamSourceGameShop
                 {
                     lstGamesList.Items.Add(match);
                 }
+                /***************END GET GAME BY NAME*************/
                 
+                /**************START GET GAME BY PRICE***********/
                 // get the text from the search box
                 string search2 = txtSearchGames.Text;
 
@@ -105,6 +108,7 @@ namespace TeamSourceGameShop
                 {
                     lstGamesList.Items.Add(match2);
                 }
+                /***************END GET GAME BY PRICE*************/
             }
             else
             {
