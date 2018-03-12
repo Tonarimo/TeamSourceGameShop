@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -8,8 +9,14 @@ using System.Windows.Forms;
 
 namespace TeamSourceGameShop
 {
-    static class GamesDB
+    static class GamesDB 
     {
+        /// <summary>
+        /// Adds or updates a game depending on whether
+        /// the user added a new game or tried to update
+        /// a current game.
+        /// </summary>
+        /// <param name="game">A game that is being passed to the method to be updated or added.</param>
         public static void AddOrUpdateGame(Game game)
         {
             GameStoreDB db = new GameStoreDB();
@@ -31,77 +38,47 @@ namespace TeamSourceGameShop
 
             db.SaveChanges();
         }
-        public static List<Game> getAllGamesByName()
-        {
-            // get's all games by name from DB.
-            SqlConnection con = DBHelper.GetConnection();
 
-            SqlCommand retrieve = new SqlCommand();
-            retrieve.Connection = con;
-            retrieve.CommandText = @"SELECT GameName
-                                      FROM Games";
-
-            try
-            {
-                con.Open();
-
-                SqlDataReader reader = retrieve.ExecuteReader();
-
-                List<Game> gameList = new List<Game>();
-
-                while(reader.Read())
-                {
-                    Game game = new Game();
-                    game.GameName = reader["GameName"] as string;
-
-                    gameList.Add(game);
-                }
-                return gameList;
-            }
-            finally
-            {
-                con.Dispose();
-            }
-        }
+        /// <summary>
+        /// Get all the games by their price from the
+        /// database.
+        /// </summary>
+        /// <returns>Retuns a list of games by their price.</returns>
         public static List<Game> getAllGamesByPrice()
         {
-            // get's all games by price from DB.
-            SqlConnection con = DBHelper.GetConnection();
-
-            SqlCommand retrieve = new SqlCommand();
-            retrieve.Connection = con;
-            retrieve.CommandText = @"SELECT Price
-                                      FROM Games";
-
-            try
-            {
-                con.Open();
-
-                SqlDataReader reader = retrieve.ExecuteReader();
-
-                List<Game> gameList = new List<Game>();
-
-                while (reader.Read())
-                {
-                    Game game = new Game();
-                    game.Price = reader.GetDouble(reader.GetOrdinal("Price"));
-
-                    gameList.Add(game);
-                }
-                return gameList;
-            }
-            finally
-            {
-                con.Dispose();
-            }
+            // gets games by price from DB
+            GameStoreDB db = new GameStoreDB();
+            return db.Games.OrderBy(g => g.Price).ToList();
         }
 
-        public static List<Game> getAllGames()
+        /// <summary>
+        /// Get a list of all the games by their name from
+        /// the database.
+        /// </summary>
+        /// <returns>Returns a list of all the games by their name.</returns>
+        public static List<Game> getAllGamesByName()
         {
             // get's all games by name from DB.
             GameStoreDB db = new GameStoreDB();
 
             return db.Games.OrderBy(g => g.GameName).ToList();
+        }
+
+        public static void deleteGame(Game games)
+        {
+            GameStoreDB db = new GameStoreDB();
+
+            if(games != null)
+            {
+                var game = db.Games.Find(games.GameID);
+                db.Games.Remove(game);
+                db.SaveChanges();
+                MessageBox.Show("Game Deleted!");
+            } 
+            else
+            {
+                MessageBox.Show("You did not select a game to delete!");
+            }
         }
     }
 }

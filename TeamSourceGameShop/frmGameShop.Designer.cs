@@ -53,7 +53,7 @@
             // 
             this.txtSearchGames.Location = new System.Drawing.Point(121, 25);
             this.txtSearchGames.Name = "txtSearchGames";
-            this.txtSearchGames.Size = new System.Drawing.Size(196, 20);
+            this.txtSearchGames.Size = new System.Drawing.Size(275, 20);
             this.txtSearchGames.TabIndex = 1;
             this.txtSearchGames.TextChanged += new System.EventHandler(this.txtSearchGames_TextChanged);
             // 
@@ -62,13 +62,13 @@
             this.lstGamesList.FormattingEnabled = true;
             this.lstGamesList.Location = new System.Drawing.Point(28, 91);
             this.lstGamesList.Name = "lstGamesList";
-            this.lstGamesList.Size = new System.Drawing.Size(289, 173);
+            this.lstGamesList.Size = new System.Drawing.Size(427, 173);
             this.lstGamesList.TabIndex = 2;
             // 
             // lblGameName
             // 
             this.lblGameName.AutoSize = true;
-            this.lblGameName.Location = new System.Drawing.Point(25, 63);
+            this.lblGameName.Location = new System.Drawing.Point(36, 63);
             this.lblGameName.Name = "lblGameName";
             this.lblGameName.Size = new System.Drawing.Size(66, 13);
             this.lblGameName.TabIndex = 3;
@@ -77,7 +77,7 @@
             // lblPrice
             // 
             this.lblPrice.AutoSize = true;
-            this.lblPrice.Location = new System.Drawing.Point(118, 63);
+            this.lblPrice.Location = new System.Drawing.Point(172, 63);
             this.lblPrice.Name = "lblPrice";
             this.lblPrice.Size = new System.Drawing.Size(31, 13);
             this.lblPrice.TabIndex = 4;
@@ -86,7 +86,7 @@
             // lblNumberOfGames
             // 
             this.lblNumberOfGames.AutoSize = true;
-            this.lblNumberOfGames.Location = new System.Drawing.Point(173, 63);
+            this.lblNumberOfGames.Location = new System.Drawing.Point(254, 63);
             this.lblNumberOfGames.Name = "lblNumberOfGames";
             this.lblNumberOfGames.Size = new System.Drawing.Size(63, 13);
             this.lblNumberOfGames.TabIndex = 5;
@@ -95,7 +95,7 @@
             // lblAvailability
             // 
             this.lblAvailability.AutoSize = true;
-            this.lblAvailability.Location = new System.Drawing.Point(261, 63);
+            this.lblAvailability.Location = new System.Drawing.Point(340, 63);
             this.lblAvailability.Name = "lblAvailability";
             this.lblAvailability.Size = new System.Drawing.Size(56, 13);
             this.lblAvailability.TabIndex = 6;
@@ -103,7 +103,7 @@
             // 
             // btnAddGame
             // 
-            this.btnAddGame.Location = new System.Drawing.Point(366, 25);
+            this.btnAddGame.Location = new System.Drawing.Point(488, 25);
             this.btnAddGame.Name = "btnAddGame";
             this.btnAddGame.Size = new System.Drawing.Size(110, 60);
             this.btnAddGame.TabIndex = 7;
@@ -113,7 +113,7 @@
             // 
             // btnUpdateGame
             // 
-            this.btnUpdateGame.Location = new System.Drawing.Point(366, 113);
+            this.btnUpdateGame.Location = new System.Drawing.Point(488, 115);
             this.btnUpdateGame.Name = "btnUpdateGame";
             this.btnUpdateGame.Size = new System.Drawing.Size(110, 61);
             this.btnUpdateGame.TabIndex = 8;
@@ -123,18 +123,19 @@
             // 
             // btnDeleteGame
             // 
-            this.btnDeleteGame.Location = new System.Drawing.Point(366, 203);
+            this.btnDeleteGame.Location = new System.Drawing.Point(488, 203);
             this.btnDeleteGame.Name = "btnDeleteGame";
             this.btnDeleteGame.Size = new System.Drawing.Size(110, 61);
             this.btnDeleteGame.TabIndex = 9;
             this.btnDeleteGame.Text = "Delete Game";
             this.btnDeleteGame.UseVisualStyleBackColor = true;
+            this.btnDeleteGame.Click += new System.EventHandler(this.btnDeleteGame_Click);
             // 
             // frmGameShop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(516, 289);
+            this.ClientSize = new System.Drawing.Size(621, 294);
             this.Controls.Add(this.btnDeleteGame);
             this.Controls.Add(this.btnUpdateGame);
             this.Controls.Add(this.btnAddGame);
@@ -157,7 +158,6 @@
 
         private System.Windows.Forms.Label lblSearchGames;
         private System.Windows.Forms.TextBox txtSearchGames;
-        private System.Windows.Forms.ListBox lstGamesList;
         private System.Windows.Forms.Label lblGameName;
         private System.Windows.Forms.Label lblPrice;
         private System.Windows.Forms.Label lblNumberOfGames;
@@ -165,6 +165,7 @@
         private System.Windows.Forms.Button btnAddGame;
         private System.Windows.Forms.Button btnUpdateGame;
         private System.Windows.Forms.Button btnDeleteGame;
+        public System.Windows.Forms.ListBox lstGamesList;
     }
 }
 
