@@ -100,13 +100,13 @@ namespace TeamSourceGameShop
                 List<Game> match2 = new List<Game>();
 
                 // get all games whose price starts with the price in the text box
-                match2 = gamesByPrice.Where(g => g.Price.ToString().StartsWith(search)).ToList();
+                match2 = gamesByPrice.Where(g => (g.Price.ToString()).StartsWith(search2)).ToList();
 
                 // display all games whose price matches what is typed in the 
                 // search box
                 foreach (var i in match2)
                 {
-                    lstGamesList.Items.Add(match2);
+                    lstGamesList.Items.Add(i);
                 }
                 /***************END GET GAME BY PRICE*************/
             }
